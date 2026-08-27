@@ -146,7 +146,7 @@ function render(regiao){
   html+='<div class="info-row"><div class="info-icon">👤</div><div><strong>Coordenador(es):</strong><br>'+regiao.coord.map(c=>esc(c.n)+' — <a href="mailto:'+esc(c.e)+'">'+esc(c.e)+'</a>').join('<br>')+'</div></div>';
   regiao.escolas.forEach(es=>{
     const tel=es.tel?es.tel.replace(/\D/g,''):'';
-    const wa=encodeURIComponent('Olá! Encontrei a '+es.n+' na Feira do Jovem Aprendiz SENAI-RS e gostaria de mais informações.');
+    const wa=encodeURIComponent('Olá! Encontrei a '+es.n+' no evento sobre o Jovem Aprendiz SENAI-RS e gostaria de mais informações.');
     const map=encodeURIComponent(es.n+' - RS');
     html+='<div class="escola-box"><strong>'+esc(es.n)+'</strong><div class="escola-end">📍 '+esc(es.end)+'</div><div class="actions">';
     html+=tel?'<a class="btn-action bg-call" href="tel:+55'+tel+'">📞 Ligar</a>':'<span class="btn-action bg-call" style="opacity:.4">📞 Ligar</span>';
