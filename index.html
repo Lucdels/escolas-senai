@@ -124,6 +124,7 @@ input:focus,select:focus{border-color:var(--azul-vivo);box-shadow:0 0 0 4px rgba
 </head>
 
 
+
 <body>
 <header class="site-header">
   <div class="brandbar">
@@ -193,6 +194,7 @@ input:focus,select:focus{border-color:var(--azul-vivo);box-shadow:0 0 0 4px rgba
 </footer>
 
 <script>
+
 
 
 // Base completa: 20 sub-regiões, 497 municípios do RS e o canal DIGITAL.
@@ -448,6 +450,7 @@ citySearch.addEventListener('input', () => {
 });
 citySearch.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); autocompleteList.hidden=true; searchByInput(); } });
 citySearch.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); autocompleteList.hidden=true; searchByInput(); } });
+citySearch.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); autocompleteList.hidden=true; searchByInput(); } });
 document.addEventListener('click',e=>{ if(!e.target.closest('.input-group')) autocompleteList.hidden=true; });
 
 // ===== RENDERIZAÇÃO =====
@@ -455,13 +458,14 @@ function render(regiao,municipio=''){
   if(!regiao){ resultsArea.innerHTML='<div class="card"><div class="card-title">Nenhuma escola encontrada</div><p>Verifique o município ou sub-região.</p></div>'; return; }
   const phoneLink=tel=>{const digits=(tel||'').replace(/\D/g,'');return digits?'+55'+digits:'';};
   const phoneHtml=tel=>{const link=phoneLink(tel);return link?'<a href="tel:'+link+'">'+esc(tel)+'</a>':'Não informado';};
+  const centralHtml=tel=>'<a href="https://api.whatsapp.com/send/?phone=555191448356" target="_blank" rel="noopener" aria-label="Falar com a Central de Atendimento Sistema FIERGS pelo WhatsApp">'+esc(tel)+' · WhatsApp</a>';
   const peopleHtml=(items,type)=>items.map(item=>'<div class="contact-person"><div class="contact-name">'+esc(item.n)+'</div><div class="contact-links">'+(type==='email'?'<a href="mailto:'+esc(item.e)+'">'+esc(item.e)+'</a>':phoneHtml(item.tel))+'</div></div>').join('');
   let html='<div class="card">'+(municipio?'<div class="selection-kicker">Atendimento de referência para <strong>'+esc(municipio)+'</strong></div>':'')+'<div class="card-header"><div><span class="card-tag">Sub-região</span><div class="card-title">'+esc(regiao.reg)+'</div></div><span class="card-tag">'+regiao.mun.length+' municípios</span></div>';
   html+='<div class="contact-grid">';
   html+='<div class="contact-card"><div class="contact-label">👤 Coordenação Técnica SENAI</div>'+peopleHtml(regiao.coord,'email')+'</div>';
   html+='<div class="contact-card"><div class="contact-label">◆ Gerência SENAI</div>'+peopleHtml(regiao.gerentes||[],'phone')+'</div>';
   html+='<div class="contact-card"><div class="contact-label">🤝 Relacionamento com o Mercado</div>'+peopleHtml(regiao.agentes||[],'phone')+'</div>';
-  html+='<div class="contact-card"><div class="contact-label">☎ Central de Atendimento Sistema FIERGS</div><div class="contact-person"><div class="contact-name">Atendimento ao público</div><div class="contact-links">'+(regiao.central||[]).map(phoneHtml).join('<br>')+'</div></div></div>';
+  html+='<div class="contact-card"><div class="contact-label">☎ Central de Atendimento Sistema FIERGS</div><div class="contact-person"><div class="contact-name">Atendimento ao público</div><div class="contact-links">'+(regiao.central||[]).map(centralHtml).join('<br>')+'</div></div></div>';
   html+='</div><div class="section-title">Escola(s) de referência</div>';
   regiao.escolas.forEach(es=>{
     const tel=es.tel?es.tel.replace(/\D/g,''):'';
