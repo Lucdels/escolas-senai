@@ -28,8 +28,8 @@ button,a{touch-action:manipulation}
 .hero::before{content:"";position:absolute;inset:-40% -15% auto auto;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(0,163,224,.3),transparent 66%)}
 .hero::after{content:"";position:absolute;left:0;bottom:0;width:42%;height:6px;background:var(--laranja)}
 .hero-inner{position:relative;max-width:1180px;margin:auto;padding:66px 28px 108px}
-.event-kicker{display:inline-flex;align-items:center;gap:9px;padding:7px 13px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.1);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.event-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--laranja);box-shadow:0 0 0 5px rgba(241,90,36,.18)}
+.education-kicker{display:inline-flex;align-items:center;gap:9px;padding:7px 13px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.1);font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.education-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--laranja);box-shadow:0 0 0 5px rgba(241,90,36,.18)}
 .hero h1{max-width:930px;margin-top:20px;font-size:clamp(34px,5.2vw,62px);line-height:1.02;letter-spacing:-.045em;font-weight:900;text-wrap:balance}
 .hero-copy{max-width:680px;margin-top:18px;color:rgba(255,255,255,.83);font-size:clamp(16px,2vw,20px)}
 .hero-stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
@@ -68,6 +68,14 @@ input:focus,select:focus{border-color:var(--azul-vivo);box-shadow:0 0 0 4px rgba
 .info-row{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;margin-bottom:18px;padding:14px;border-radius:14px;background:#F5F8FB;font-size:14px}
 .info-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:#E2F1FF;color:var(--azul);font-size:18px}
 .info-row a{color:var(--azul);word-break:break-word}
+.contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.contact-card{padding:16px;border:1px solid #DFE7EF;border-radius:15px;background:#F7FAFD;min-width:0}
+.contact-label{display:flex;align-items:center;gap:7px;margin-bottom:7px;color:var(--azul);font-size:11px;font-weight:900;letter-spacing:.045em;text-transform:uppercase}
+.contact-person+.contact-person{margin-top:11px;padding-top:11px;border-top:1px solid #DFE7EF}
+.contact-name{font-weight:800;color:var(--azul-escuro);line-height:1.3}
+.contact-links{margin-top:4px;font-size:13px;color:var(--muted)}
+.contact-links a{color:var(--azul);word-break:break-word}
+.section-title{margin:20px 0 9px;color:var(--azul-escuro);font-size:15px;font-weight:900}
 .escola-box{padding:18px;margin-top:12px;border:1px solid #DFE7EF;border-radius:16px;background:linear-gradient(180deg,#fff,#FAFCFE)}
 .escola-box strong{display:block;color:var(--azul-escuro);font-size:16px;line-height:1.3}
 .escola-end{margin-top:8px;color:#57677B;font-size:13px}
@@ -99,6 +107,7 @@ input:focus,select:focus{border-color:var(--azul-vivo);box-shadow:0 0 0 4px rgba
   .hero-inner{padding:48px 20px 92px}.main-shell{padding:0 16px 44px;margin-top:-58px}
   .search-panel{padding:21px;border-radius:20px}.panel-heading{display:block}.panel-heading p{margin-top:5px}
   .search-fields{grid-template-columns:1fr}.actions{grid-template-columns:repeat(2,1fr)}
+  .contact-grid{grid-template-columns:1fr}
   .city-grid{grid-template-columns:repeat(2,1fr)}
   .qr-card{grid-template-columns:1fr;text-align:center;padding:28px 22px}.qr-brand{margin-left:auto;margin-right:auto}.qr-help{margin-left:auto;margin-right:auto}.qr-code-link{justify-self:center}
   .footer-inner{flex-direction:column}.footer-copy{text-align:center}.footer-logos{justify-content:center;flex-wrap:wrap}
@@ -114,6 +123,7 @@ input:focus,select:focus{border-color:var(--azul-vivo);box-shadow:0 0 0 4px rgba
 </style>
 </head>
 
+
 <body>
 <header class="site-header">
   <div class="brandbar">
@@ -126,7 +136,7 @@ input:focus,select:focus{border-color:var(--azul-vivo);box-shadow:0 0 0 4px rgba
 <main id="top">
   <section class="hero" aria-labelledby="heroTitle">
     <div class="hero-inner">
-      <span class="event-kicker">Educação + Indústria</span>
+      <span class="education-kicker">Educação + Indústria</span>
       <h1 id="heroTitle">O crescimento da indústria começa na aprendizagem do SENAI RS</h1>
       <p class="hero-copy">Descubra a sub-região, a equipe técnica e a unidade SENAI de referência para o seu município.</p>
       <div class="hero-stats" aria-label="Cobertura do localizador">
@@ -184,126 +194,187 @@ input:focus,select:focus{border-color:var(--azul-vivo);box-shadow:0 0 0 4px rgba
 
 <script>
 
+
 // Base completa: 20 sub-regiões, 497 municípios do RS e o canal DIGITAL.
-// Gerada a partir da planilha de referência fornecida em 27/08/2026.
+// Atualizada a partir da planilha de referência com contatos de gestão e mercado.
 const REGIOES = [
   {
     reg: "Central",
     coord: [{"n":"Emerson Camilo","e":"emerson.camillo@senairs.org.br"}],
+    gerentes: [{"n":"Adriano Vinicius Wietzycoski","tel":"(55) 9918-39531"}],
+    agentes: [{"n":"Central de Atendimento","tel":"(51) 99144-8356"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI ROBERTO BARBOSA RIBAS - SANTA MARIA","end":"Avenida Pedro Cezar Saccol, 2121, Santa Maria, Rio Grande do Sul","tel":"(55) 3220-5110"}],
     mun: ["AGUDO","ALEGRETE","BARRA DO QUARAÍ","CACEQUI","CACHOEIRA DO SUL","CAPÃO DO CIPÓ","CERRO BRANCO","DILERMANDO DE AGUIAR","DONA FRANCISCA","FAXINAL DO SOTURNO","FORMIGUEIRO","ITAARA","ITACURUBI","ITAQUI","IVORÁ","JAGUARI","JARI","JÚLIO DE CASTILHOS","MAÇAMBARÁ","MANOEL VIANA","MATA","NOVA ESPERANÇA DO SUL","NOVA PALMA","NOVO CABRAIS","PARAÍSO DO SUL","PINHAL GRANDE","QUARAÍ","QUEVEDOS","RESTINGA SÊCA","ROSÁRIO DO SUL","SANTA MARGARIDA DO SUL","SANTA MARIA","SANT'ANA DO LIVRAMENTO","SANTIAGO","SÃO BORJA","SÃO FRANCISCO DE ASSIS","SÃO GABRIEL","SÃO JOÃO DO POLÊSINE","SÃO MARTINHO DA SERRA","SÃO PEDRO DO SUL","SÃO SEPÉ","SÃO VICENTE DO SUL","SILVEIRA MARTINS","TOROPI","TUPANCIRETÃ","UNISTALDA","URUGUAIANA","VILA NOVA DO SUL"]
   },
   {
     reg: "Encosta da Serra",
     coord: [{"n":"Roniere Teixeira dos Santos","e":"roniere.santos@senairs.org.br"}],
+    gerentes: [{"n":"Eduardo Weber","tel":"(51) 99146-0100"}],
+    agentes: [{"n":"Caroline Suedeckum Pedroso","tel":"(51) 99273-5844"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI NELSON HEIDRICH - IGREJINHA","end":"R. Halley do Amaral Cardoso, 459 – Bairro XV de Novembro - Igrejinha","tel":"(51) 3549.7820"},{"n":"CFP SENAI WALDEMAR STRASSBURGUER - SAPIRANGA","end":"Avenida Vinte de Setembro, 6365 – Bairro Horizonte - Sapiranga","tel":"(51) 3904.2748"}],
     mun: ["ARARICÁ","CAMBARÁ DO SUL","CANELA","GRAMADO","IGREJINHA","JAQUIRANA","LINDOLFO COLLOR","MORRO REUTER","NOVA HARTZ","NOVA PETRÓPOLIS","PAROBÉ","PICADA CAFÉ","PRESIDENTE LUCENA","RIOZINHO","ROLANTE","SANTA MARIA DO HERVAL","SÃO FRANCISCO DE PAULA","SAPIRANGA","TAQUARA","TRÊS COROAS"]
   },
   {
     reg: "Metropolitana 1",
     coord: [{"n":"Bruna Magda Michel","e":"bruna.michel@senairs.org.br"},{"n":"Zaqueu da Rosa Varella","e":"zaqueu.varella@senairs.org.br"},{"n":"Janete Laguna de Aguiar","e":"janete.aguiar@senairs.org.br"}],
-    escolas: [{"n":"CFP SENAI VISCONDE DE MAUÁ - PORTO ALEGRE","end":"Avenida Sertório, 473, Porto Alegre, Rio Grande do Sul","tel":"(51) 3904-2615"},{"n":"CFP SENAI PORTO ALEGRE","end":"Avenida Sertório, 473, Porto Alegre, Rio Grande do Sul","tel":"(51) 3904-2615"},{"n":"CFP SENAI AUTOMOTIVO - PORTO ALEGRE","end":"Rua dos Maias, 830, Bairro Rubem Berta - Porto Alegre, Rio Grande do Sul","tel":"(51) 3390-1500"},{"n":"SENAI Construção Civil - PORTO ALEGRE","end":"Rua dos Maias, 830, Bairro Rubem Berta - Porto Alegre, Rio Grande do Sul","tel":"(51) 3390-1500"}],
+    gerentes: [{"n":"Gidião Araújo Monteiro","tel":"(51) 9176-1701"}],
+    agentes: [{"n":"Douglas Paloschi de Brito","tel":"(51) 98911-5148"}],
+    central: ["(51) 99144-8356"],
+    escolas: [{"n":"CFP SENAI VISCONDE DE MAUÁ - PORTO ALEGRE","end":"Avenida Sertório, 473, Porto Alegre, Rio Grande do Sul","tel":"(51) 3904-2615"},{"n":"CFP SENAI PORTO ALEGRE","end":"Avenida Sertório, 473, Porto Alegre, Rio Grande do Sul","tel":"(51) 3904-2615"},{"n":"CFP SENAI AUTOMOTIVO - PORTO ALEGRE","end":"Rua dos Maias, 830, Bairro Rubem Berta - Porto Alegre, Rio Grande do Sul","tel":"(51) 3390-1500"},{"n":"SENAI CONSTRUÇÃO CIVIL - PORTO ALEGRE","end":"Rua dos Maias, 830, Bairro Rubem Berta - Porto Alegre, Rio Grande do Sul","tel":"(51) 3390-1500"}],
     mun: ["ARAMBARÉ","ARROIO DOS RATOS","BARÃO DO TRIUNFO","BARRA DO RIBEIRO","BUTIÁ","CAMAQUÃ","CERRO GRANDE DO SUL","CHARQUEADAS","CHUVISCA","CRISTAL","DOM FELICIANO","ELDORADO DO SUL","GUAÍBA","MARIANA PIMENTEL","MINAS DO LEÃO","PORTO ALEGRE","SÃO JERÔNIMO","SENTINELA DO SUL","SERTÃO SANTANA","TAPES"]
   },
   {
     reg: "DIGITAL",
     coord: [{"n":"Amanda Rocha Portal","e":"amanda.portal@senairs.org.br"},{"n":"Gilberto Garcia Torman Junior","e":"gilberto.torman@senairs.org.br"}],
-    escolas: [{"n":"CFP SENAI DIGITAL","end":"","tel":""}],
+    gerentes: [{"n":"Luciana Curra","tel":"(51) 9313-0242"},{"n":"Luciana Curra","tel":"(51) 9313-0243"}],
+    agentes: [{"n":"Douglas Paloschi de Brito","tel":"(51) 98911-5148"}],
+    central: ["(51) 99144-8356"],
+    escolas: [{"n":"CFP SENAI DIGITAL","end":"Avenida Assis Brasil, 8450 - Porto Alegre, Rio Grande do Sul","tel":"(51) 3904-2620"}],
     mun: ["DIGITAL"]
   },
   {
     reg: "Metropolitana 2",
     coord: [{"n":"Michel Anderson dos Santos Zinth","e":"michel.zinth@senairs.org.br"}],
+    gerentes: [{"n":"Alexandre Stein","tel":"(55) 9152-0057"}],
+    agentes: [{"n":"Douglas Ivo Pinto Barth","tel":"(51) 98939-2616"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI NEY DAMASCENO FERREIRA - GRAVATAÍ","end":"Avenida Plínio Gilberto Kröeff, 401, Bairro Distrito Industrial  - Gravataí, Rio Grande do Sul","tel":"(51) 3390-1551"},{"n":"CFP SENAI COMENDADOR CLEMENTE CIFALI - CACHOEIRINHA","end":"Rua Vereador Ivo Pereira, 280, Bairro City Nova Fase - Cachoeirinha, Rio Grande do Sul","tel":"(51) 3390 1530"}],
     mun: ["ARROIO DO SAL","BALNEÁRIO PINHAL","CACHOEIRINHA","CAPÃO DA CANOA","CARAÁ","CIDREIRA","DOM PEDRO DE ALCÂNTARA","GLORINHA","GRAVATAÍ","IMBÉ","ITATI","MAMPITUBA","MAQUINÉ","MORRINHOS DO SUL","OSÓRIO","SANTO ANTÔNIO DA PATRULHA","TERRA DE AREIA","TORRES","TRAMANDAÍ","TRÊS CACHOEIRAS","TRÊS FORQUILHAS","XANGRI-LÁ"]
   },
   {
     reg: "Metropolitana 3",
     coord: [{"n":"Jaison Zancan Flores","e":"jaison.flores@senairs.org.br"}],
+    gerentes: [{"n":"Fernanda Barboza dos Santos","tel":"(51) 9927-01886"}],
+    agentes: [{"n":"Douglas Paloschi de Brito","tel":"(51) 98911-5148"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI DE SOLDAGEM CYPRIANO MICHELETTO - CANOAS","end":"Rua das Hortênsias, 400, Bairro Igara II - Canoas, Rio Grande do Sul","tel":"(51) 3904.2655 / (51) 3904.2645"}],
     mun: ["ALVORADA","CANOAS","CAPIVARI DO SUL","MOSTARDAS","PALMARES DO SUL","TRIUNFO","VIAMÃO"]
   },
   {
     reg: "Noroeste 1",
     coord: [{"n":"Cleber Rafael Schwan","e":"cleber.schwan@senairs.org.br"}],
+    gerentes: [{"n":"Alessandro Diego Neumann","tel":"(55) 99112-7711"}],
+    agentes: [{"n":"Fagner Elicher","tel":"(55)99101-3802"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI VERGÍLIO LUNARDI - SANTA ROSA","end":"Rua das Hortênsias, 315, Bairro São Francisco - Santa Rosa, Rio Grande do Sul","tel":"(55) 3513-5310"},{"n":"CFP SENAI HORIZONTINA","end":"Rua Duque de Caxias, 333, Bairro Centro - Horizontina, Rio Grande do Sul","tel":"(55) 3537-3312"}],
     mun: ["ALECRIM","ALEGRIA","BARRA DO GUARITA","BOA VISTA DO BURICÁ","BOM PROGRESSO","BOSSOROCA","BRAGA","CAIBATÉ","CAMPINA DAS MISSÕES","CAMPO NOVO","CÂNDIDO GODÓI","CERRO LARGO","CHIAPETTA","CORONEL BICACO","CRISSIUMAL","DERRUBADAS","DEZESSEIS DE NOVEMBRO","DOUTOR MAURÍCIO CARDOSO","ENTRE-IJUÍS","ESPERANÇA DO SUL","EUGÊNIO DE CASTRO","GARRUCHOS","GIRUÁ","GUARANI DAS MISSÕES","HORIZONTINA","HUMAITÁ","INDEPENDÊNCIA","INHACORÁ","MATO QUEIMADO","MIRAGUAÍ","NOVA CANDELÁRIA","NOVO MACHADO","PIRAPÓ","PORTO LUCENA","PORTO MAUÁ","PORTO VERA CRUZ","PORTO XAVIER","REDENTORA","ROLADOR","ROQUE GONZALES","SALVADOR DAS MISSÕES","SANTA ROSA","SANTO ÂNGELO","SANTO ANTÔNIO DAS MISSÕES","SANTO AUGUSTO","SANTO CRISTO","SÃO JOSÉ DO INHACORÁ","SÃO LUIZ GONZAGA","SÃO MARTINHO","SÃO MIGUEL DAS MISSÕES","SÃO NICOLAU","SÃO PAULO DAS MISSÕES","SÃO PEDRO DO BUTIÁ","SÃO VALÉRIO DO SUL","SEDE NOVA","SENADOR SALGADO FILHO","SETE DE SETEMBRO","TENENTE PORTELA","TIRADENTES DO SUL","TRÊS DE MAIO","TRÊS PASSOS","TUCUNDUVA","TUPARENDI","UBIRETAMA","VISTA GAÚCHA","VITÓRIA DAS MISSÕES"]
   },
   {
     reg: "Noroeste 2",
     coord: [{"n":"Paulo Luciano Schneider","e":"paulo.luciano@senairs.org.br"}],
+    gerentes: [{"n":"Alessandro Diego Neumann","tel":"(55) 99112-7711"}],
+    agentes: [{"n":"Paulo Fernando Martins Voss","tel":"(55) 99161-0224"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI INGOMAR BRUNE - PANAMBI","end":"Rua Pará, 120, Bairro Arco-Íris - Panambi, Rio Grande do Sul","tel":"(55) 3375-5110"},{"n":"CFP SENAI IBIRUBÁ","end":"Rua Antônio Selvino Rodrigues da Silva, 715 - Ibirubá, Rio Grande do Sul","tel":"(54) 3324-6007"},{"n":"CFP SENAI NÃO-ME-TOQUE","end":"Rua Senador Salgado Filho, 1275, Bairro Vila Nova - Não-Me-Toque, Rio Grande do Sul","tel":"(54) 3320-0200"}],
     mun: ["AJURICABA","ALPESTRE","AMETISTA DO SUL","AUGUSTO PESTANA","BARRA FUNDA","BOA VISTA DAS MISSÕES","BOA VISTA DO CADEADO","BOA VISTA DO INCRA","BOZANO","CAIÇARA","CATUÍPE","CERRO GRANDE","CHAPADA","COLORADO","CONDOR","CONSTANTINA","CORONEL BARROS","CRISTAL DO SUL","CRUZ ALTA","DOIS IRMÃOS DAS MISSÕES","ENGENHO VELHO","ERVAL SECO","FORTALEZA DOS VALOS","FREDERICO WESTPHALEN","GRAMADO DOS LOUREIROS","IBIRUBÁ","IJUÍ","IRAÍ","JABOTICABA","JÓIA","LAGOA DOS TRÊS CANTOS","LAJEADO DO BUGRE","LIBERATO SALZANO","NÃO-ME-TOQUE","NONOAI","NOVA BOA VISTA","NOVA RAMADA","NOVO BARREIRO","NOVO TIRADENTES","NOVO XINGU","PALMEIRA DAS MISSÕES","PALMITINHO","PANAMBI","PEJUÇARA","PINHAL","PINHEIRINHO DO VALE","PLANALTO","QUINZE DE NOVEMBRO","RIO DOS ÍNDIOS","RODEIO BONITO","RONDA ALTA","RONDINHA","SAGRADA FAMÍLIA","SALDANHA MARINHO","SALTO DO JACUÍ","SANTA BÁRBARA DO SUL","SÃO JOSÉ DAS MISSÕES","SÃO PEDRO DAS MISSÕES","SARANDI","SEBERI","SELBACH","TAPERA","TAQUARUÇU DO SUL","TRÊS PALMEIRAS","TRINDADE DO SUL","VICENTE DUTRA","VISTA ALEGRE"]
   },
   {
     reg: "Norte 1",
     coord: [{"n":"Rangel Knerek","e":"rangel.knerek@senairs.org.br"}],
+    gerentes: [{"n":"Juliano da Silva Pereira","tel":"(51) 99260-2026"}],
+    agentes: [{"n":"Leonir Mario Zignani","tel":"(54) 99189-8241"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI JORGE BARBIEUX - PASSO FUNDO","end":"Rua Erexim, 59, Bairro Vera Cruz - Passo Fundo, Rio Grande do Sul","tel":"(54) 3318-3600"},{"n":"CFP SENAI JOÃO WALLIG - CARAZINHO","end":"Avenida Flores da Cunha, 3850, Bairro Borghetti - Carazinho, Rio Grande do Sul","tel":"(54) 3329-0600"},{"n":"CFP SENAI NICANDRO OLTRAMARI - MARAU","end":"Rua Honorino Pereira Borges, 599, Bairro Centro - Marau, Rio Grande do Sul","tel":"(54) 3371-1810"}],
     mun: ["ALMIRANTE TAMANDARÉ DO SUL","ALTO ALEGRE","BARROS CASSAL","CAMARGO","CAMPOS BORGES","CARAZINHO","CASCA","CIRÍACO","COQUEIROS DO SUL","COXILHA","DAVID CANABARRO","ERNESTINA","ESPUMOSO","FONTOURA XAVIER","GENTIL","GRAMADO XAVIER","IBIRAPUITÃ","ITAPUCA","JACUIZINHO","LAGOÃO","MARAU","MATO CASTELHANO","MORMAÇO","MULITERNO","NICOLAU VERGUEIRO","NOVA ALVORADA","PASSO FUNDO","PONTÃO","SANTO ANTÔNIO DO PALMA","SANTO ANTÔNIO DO PLANALTO","SÃO DOMINGOS DO SUL","SÃO JOSÉ DO HERVAL","SOLEDADE","TIO HUGO","VANINI","VICTOR GRAEFF","VILA MARIA"]
   },
   {
     reg: "Norte 2",
     coord: [{"n":"Augusto César Dezord","e":"augusto.dezordi@senairs.org.br"}],
+    gerentes: [{"n":"Valquíria Moll Grazziotin","tel":"(54) 99175-5465"}],
+    agentes: [{"n":"Leonir Mario Zignani","tel":"(54) 99189-8241"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI JOSÉ OSCAR SALAZAR - ERECHIM","end":"Rua Carlos Demoliner, 420, Bairro Linho - Erechim, Rio Grande do Sul","tel":"(54) 3861-7200"}],
     mun: ["ÁGUA SANTA","ARATIBA","ÁUREA","BARÃO DE COTEGIPE","BARRA DO RIO AZUL","BARRACÃO","BENJAMIN CONSTANT DO SUL","CACIQUE DOBLE","CAMPINAS DO SUL","CAPÃO BONITO DO SUL","CARLOS GOMES","CASEIROS","CENTENÁRIO","CHARRUA","CRUZALTENSE","ENTRE RIOS DO SUL","EREBANGO","ERECHIM","ERVAL GRANDE","ESTAÇÃO","FAXINALZINHO","FLORIANO PEIXOTO","GAURAMA","GETÚLIO VARGAS","IBIAÇÁ","IBIRAIARAS","IPIRANGA DO SUL","ITATIBA DO SUL","JACUTINGA","LAGOA VERMELHA","MACHADINHO","MARCELINO RAMOS","MARIANO MORO","MAXIMILIANO DE ALMEIDA","PAIM FILHO","PAULO BENTO","PONTE PRETA","QUATRO IRMÃOS","SANANDUVA","SANTA CECÍLIA DO SUL","SANTO EXPEDITO DO SUL","SÃO JOÃO DA URTIGA","SÃO JOSÉ DO OURO","SÃO VALENTIM","SERTÃO","SEVERIANO DE ALMEIDA","TAPEJARA","TRÊS ARROIOS","TUPANCI DO SUL","VIADUTOS","VILA LÂNGARO"]
   },
   {
     reg: "Serra 1",
     coord: [{"n":"Joelso Luis Cavalheiro Cardoso","e":"joelso.cardoso@senairs.org.br"},{"n":"Elvis Tamagno","e":"elvis.tamagno@senairs.org.br"}],
-    escolas: [{"n":"CFP SENAI EM MECATRÔNICA - CAXIAS DO SUL","end":"Rua Travessão Solferino, 501, Bairro Cruzeiro, Caxias do Sul,  Rio Grande do Sul","tel":"(54) 3238-7600"},{"n":"CFP SENAI NILO PEÇANHA - CAXIAS DO SUL","end":"Rua Vereador Mário Pezzi, 1135,  Bairro Exposição,  Caxias do Sul, Rio Grande do Sul","tel":"(54) 3201-5545"},{"n":"CFP SENAI AUTOMOTIVO - CAXIAS DO SUL","end":"Rua Vereador Mário Pezzi, 1135,  Bairro Exposição,  Caxias do Sul, Rio Grande do Sul","tel":"(54) 3201-5545"},{"n":"CFP SENAI JOÃO FLÁVIO RECH - SÃO MARCOS","end":"Rua Joaquim Domingos Vanelli, 920,  Bairro Progresso, São Marcos,  Rio Grande do Sul","tel":"(54) 3280-2150"}],
+    gerentes: [{"n":"Igor André Krakheche","tel":"(54) 99119-2888"}],
+    agentes: [{"n":"Everton Flores da Silva","tel":"(54) 99282-7935"}],
+    central: ["(51) 99144-8356"],
+    escolas: [{"n":"CFP SENAI EM MECATRÔNICA - CAXIAS DO SUL","end":"Rua Travessão Solferino, 501, Bairro Cruzeiro, Caxias do Sul,  Rio Grande do Sul","tel":"(54) 3238-7600"},{"n":"CFP SENAI NILO PEÇANHA - CAXIAS DO SUL","end":"Rua Vereador Mário Pezzi, 1135,  Bairro Exposição,  Caxias do Sul, Rio Grande do Sul","tel":"(54) 3201-5545"},{"n":"CFP SENAI AUTOMOTIVO - CAXIAS DO SUL","end":"Rua Vereador Mário Pezzi, 1135,  Bairro Exposição,  Caxias do Sul, Rio Grande do Sul","tel":"(54) 3201-5545"},{"n":"CFP SENAI JOÃO FLAVIO RECH - SÃO MARCOS","end":"Rua Joaquim Domingos Vanelli, 920,  Bairro Progresso, São Marcos,  Rio Grande do Sul","tel":"(54) 3280-2150"}],
     mun: ["BOM JESUS","CAMPESTRE DA SERRA","CAXIAS DO SUL","MONTE ALEGRE DOS CAMPOS","SÃO JOSÉ DOS AUSENTES","SÃO MARCOS","VACARIA"]
   },
   {
     reg: "Serra 2",
     coord: [{"n":"Aline Daniela Dutra","e":"aline.dutra@senairs.org.br"}],
+    gerentes: [{"n":"Ana Paula da Silva","tel":"(54) 99909-7323"}],
+    agentes: [{"n":"Joelma Dalzochio","tel":"(54) 99356-6052"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI MADEIRA E MOBILIÁRIO - BENTO GONÇALVES","end":"Avenida Presidente Costa e Silva, 571, Bairro Planalto, Bento Gonçalves, Rio Grande do Sul","tel":"(54) 3449-7500"}],
     mun: ["ANTÔNIO PRADO","BENTO GONÇALVES","ESMERALDA","FLORES DA CUNHA","IPÊ","MONTE BELO DO SUL","MUITOS CAPÕES","NOVA PÁDUA","NOVA ROMA DO SUL","PINHAL DA SERRA","PINTO BANDEIRA","SANTA TEREZA"]
   },
   {
     reg: "Serra 3",
     coord: [{"n":"Giovani Casara","e":"giovani.casara@senairs.org.br"}],
+    gerentes: [{"n":"Felipe Andreolla","tel":"(54) 99269-8369"}],
+    agentes: [{"n":"Everton Flores da Silva","tel":"(54) 99282-7935"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI ADELINO MIOTTI - FARROUPILHA","end":"Rodovia RSC 453 - Acesso a Caravaggio, 738, Bairro Cinquentenário, Farroupilha, Rio Grande do Sul","tel":"(54) 3260-6310"},{"n":"CFP SENAI DE GARIBALDI","end":"Av.Perimetral Léo Antônio Cisilotto , 827, Bairro São José, Garibaldi, Rio Grande do Sul","tel":"(54) 3464-9800"},{"n":"CFP SENAI DE GUAPORÉ","end":"Rua Pinheiro Machado, 101, Bairro Pinheirinho, Guaporé, Rio Grande do Sul","tel":"(54) 3443-7900"},{"n":"CFP SENAI DE NOVA PRATA","end":"BR 470 KM 156,9, 4200, Bairro Centro, Nova Prata, Rio Grande do Sul","tel":"(54) 3242-0700"},{"n":"CFP SENAI DE VERANÓPOLIS","end":"Rua Júlio Farina, 150, Bairro Renovação, Veranópolis, Rio Grande do Sul","tel":"(54) 3437-2900"}],
     mun: ["ANDRÉ DA ROCHA","BOA VISTA DO SUL","CARLOS BARBOSA","CORONEL PILAR","COTIPORÃ","FAGUNDES VARELA","FARROUPILHA","GARIBALDI","GUABIJU","GUAPORÉ","MONTAURI","NOVA ARAÇÁ","NOVA BASSANO","NOVA PRATA","PARAÍ","PROTÁSIO ALVES","SÃO JORGE","SÃO VALENTIM DO SUL","SERAFINA CORRÊA","UNIÃO DA SERRA","VERANÓPOLIS","VILA FLORES","VISTA ALEGRE DO PRATA"]
   },
   {
     reg: "Sul",
     coord: [{"n":"Gerson Cantarelli Alonso","e":"gerson.alonso@senairs.org.br"}],
-    escolas: [{"n":"CFP SENAI ERALDO GIACOBBE - PELOTAS","end":"Rua Bento Gonçalves, 5073, Bairro Centro, Pelotas, Rio Grande do Sul","tel":"(53) 3310-1520"},{"n":"CFP SENAI JOÃO SIMPLÍCIO - RIO GRANDE","end":"Avenida Portugal, 184, Bairro Cidade Nova, Rio Grande, Rio Grande do Sul","tel":"(53) 3234-7500"},{"n":"CFP SENAI D JÚLIA G MÉDICI - BAGÉ","end":"Avenida Espanha, 287, Bairro Centro, Bagé, Rio Grande do Sul","tel":"(53) 3211-0510"}],
+    gerentes: [{"n":"Leandro Cesar Eduardo de Castro Ferreira","tel":"(53) 99195-0496"}],
+    agentes: [{"n":"Eduardo Gomes de Morais","tel":"(53) 99200-4249"}],
+    central: ["(51) 99144-8356"],
+    escolas: [{"n":"CFP SENAI ERALDO GIACOBBE - PELOTAS","end":"Rua Bento Gonçalves, 5073, Bairro Centro, Pelotas, Rio Grande do Sul","tel":"(53) 3310-1520"},{"n":"CFP SENAI JOÃO SIMPLÍCIO - RIO GRANDE","end":"Avenida Portugal, 184, Bairro Cidade Nova, Rio Grande, Rio Grande do Sul","tel":"(53) 3234-7500"},{"n":"CFP SENAI D JÚLIA G MEDICI - BAGÉ","end":"Avenida Espanha, 287, Bairro Centro, Bagé, Rio Grande do Sul","tel":"(53) 3211-0510"}],
     mun: ["ACEGUÁ","AMARAL FERRADOR","ARROIO DO PADRE","ARROIO GRANDE","BAGÉ","CAÇAPAVA DO SUL","CANDIOTA","CANGUÇU","CAPÃO DO LEÃO","CERRITO","CHUÍ","DOM PEDRITO","HERVAL","HULHA NEGRA","JAGUARÃO","LAVRAS DO SUL","MORRO REDONDO","PEDRAS ALTAS","PEDRO OSÓRIO","PELOTAS","PINHEIRO MACHADO","PIRATINI","RIO GRANDE","SANTA VITÓRIA DO PALMAR","SANTANA DA BOA VISTA","SÃO JOSÉ DO NORTE","SÃO LOURENÇO DO SUL","TAVARES","TURUÇU"]
   },
   {
     reg: "Vale do Rio Pardo",
     coord: [{"n":"Pedro Augusto Bottlender Machado","e":"pedro.machado@senairs.org.br"}],
+    gerentes: [{"n":"Daniel Niehus Machado","tel":"(51) 99399-8963"}],
+    agentes: [{"n":"Jeferson Felipe Jahn","tel":"(51) 98938-6447"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI CARLOS TANNHAUSER - SANTA CRUZ DO SUL","end":"Avenida Gaspar Bartholomay, 350, Bairro Senai, Santa Cruz do Sul, Rio Grande do Sul","tel":"(51) 3740-1810"},{"n":"CFP SENAI FREDERICO CLOSS - VENÂNCIO AIRES","end":"Rua XV de Novembro, 500 - Bairro Aviação, Venâncio Aires, Rio Grande do Sul","tel":"(51) 3793-3900"}],
     mun: ["ARROIO DO TIGRE","BOQUEIRÃO DO LEÃO","CANDELÁRIA","ENCRUZILHADA DO SUL","ESTRELA VELHA","GENERAL CÂMARA","HERVEIRAS","IBARAMA","LAGOA BONITA DO SUL","MATO LEITÃO","PANTANO GRANDE","PASSA SETE","PASSO DO SOBRADO","RIO PARDO","SANTA CRUZ DO SUL","SEGREDO","SINIMBU","SOBRADINHO","TUNAS","VALE DO SOL","VALE VERDE","VENÂNCIO AIRES","VERA CRUZ"]
   },
   {
     reg: "Vale do Taquari 1",
     coord: [{"n":"Anderson Lemes da Silva","e":"anderson.lemes@senairs.org.br"}],
-    escolas: [{"n":"CFP SENAI DE MONTENEGRO","end":"Rua Juvenal Alves de Oliveira, 850, Bairro SENAI, Montenegro, Rio Grande do Sul","tel":"(51) 3961 0920"},{"n":"CFP SENAI Elisabetha Augusta Müller Oderich - SÃO SEBASTIÃO DO CAÍ","end":"Rua Oderich, 305, Bairro Navegantes, São Sebastião do Caí, Rio Grande do Sul","tel":"(51) 3961-0944"}],
+    gerentes: [{"n":"Michele Sarmento","tel":"(51) 98912-1917"}],
+    agentes: [{"n":"Fabio Silva Lunkes","tel":"(51) 98946-4622"}],
+    central: ["(51) 99144-8356"],
+    escolas: [{"n":"CFP SENAI DE MONTENEGRO","end":"Rua Juvenal Alves de Oliveira, 850, Bairro SENAI, Montenegro, Rio Grande do Sul","tel":"(51) 3961 0920"},{"n":"CFP SENAI ELISABETHA AUGUSTA MÜLLER ODERICH - SÃO SEBASTIÃO DO CAÍ","end":"Rua Oderich, 305, Bairro Navegantes, São Sebastião do Caí, Rio Grande do Sul","tel":"(51) 3961-0944"}],
     mun: ["ALTO FELIZ","BARÃO","BOM PRINCÍPIO","BROCHIER","CAPELA DE SANTANA","FELIZ","HARMONIA","LINHA NOVA","MARATÁ","MONTENEGRO","PARECI NOVO","SALVADOR DO SUL","SÃO JOSÉ DO HORTÊNCIO","SÃO JOSÉ DO SUL","SÃO PEDRO DA SERRA","SÃO SEBASTIÃO DO CAÍ","SÃO VENDELINO","TUPANDI","VALE REAL"]
   },
   {
     reg: "Vale do Taquari 2",
     coord: [{"n":"Edson Araújo Melo Jr.","e":"edson.melo@senairs.org.br"}],
+    gerentes: [{"n":"Jerry Amarildo Hibner","tel":"(51) 99243-8539"}],
+    agentes: [{"n":"Fabio Silva Lunkes","tel":"(51) 98946-4622"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI DE LAJEADO","end":"Rua Senador Alberto Pasqualini, 1874, Bairro São Cristóvão, Lajeado, Rio Grande do Sul","tel":"(51) 3710-6120"}],
     mun: ["ANTA GORDA","ARROIO DO MEIO","ARVOREZINHA","BOM RETIRO DO SUL","CANUDOS DO VALE","CAPITÃO","COLINAS","COQUEIRO BAIXO","CRUZEIRO DO SUL","DOIS LAJEADOS","DOUTOR RICARDO","ENCANTADO","ESTRELA","FAZENDA VILANOVA","FORQUETINHA","ILÓPOLIS","IMIGRANTE","LAJEADO","MARQUES DE SOUZA","MUÇUM","NOVA BRÉSCIA","PAVERAMA","POÇO DAS ANTAS","POUSO NOVO","PROGRESSO","PUTINGA","RELVADO","ROCA SALES","SANTA CLARA DO SUL","SÉRIO","TABAÍ","TAQUARI","TEUTÔNIA","TRAVESSEIRO","VESPASIANO CORRÊA","WESTFÁLIA"]
   },
   {
     reg: "Vale dos Sinos 1",
     coord: [{"n":"Leandro Daniel de Souza","e":"leandro.souza@senairs.org.br"}],
+    gerentes: [{"n":"Cleber Spode","tel":"(51) 99379-6405"}],
+    agentes: [{"n":"Katiele Avila Vargas","tel":"(51) 99393-9610"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI NILO BETTANIN - ESTEIO","end":"Av. Presidente Vargas, 3023, Bairro Centro, Esteio, Rio Grande do Sul","tel":"(51) 3904-2660"},{"n":"CFP SENAI DE ELETROMECÂNICA - SAPUCAIA DO SUL","end":"Rua José de Alencar, 329, Bairro Cohab, Sapucaia do Sul, Rio Grande do Sul","tel":"(51) 3904-2673"}],
     mun: ["ESTEIO","NOVA SANTA RITA","SAPUCAIA DO SUL"]
   },
   {
     reg: "Vale dos Sinos 2",
     coord: [{"n":"Lucas Mauricio de Azevedo","e":"lucas.azevedo@senairs.org.br"}],
-    escolas: [{"n":"CFP SENAI PLÍNIO GILBERTO KROEFF - SÃO LEOPOLDO","end":"Avenida Getúlio Vargas, 3239, Bairro Vicentina, São Leopoldo, Rio Grande do Sul","tel":"(51) 3904-2690"},{"n":"CFP SENAI Lindolfo Collor - SÃO LEOPOLDO","end":"Avenida Presidente João Goulart, 682, Bairro Morro do Espelho, São Leopoldo, Rio Grande do Sul","tel":"(51) 3904-2700"}],
+    gerentes: [{"n":"Sandro Lima Bernieri","tel":"(51) 99315-1084"}],
+    agentes: [{"n":"Katiele Avila Vargas","tel":"(51) 99393-9610"}],
+    central: ["(51) 99144-8356"],
+    escolas: [{"n":"CFP SENAI PLÍNIO GILBERTO KROEFF - SÃO LEOPOLDO","end":"Avenida Getúlio Vargas, 3239, Bairro Vicentina, São Leopoldo, Rio Grande do Sul","tel":"(51) 3904-2690"},{"n":"CFP SENAI LINDOLFO COLLOR - SÃO LEOPOLDO","end":"Avenida Presidente João Goulart, 682, Bairro Morro do Espelho, São Leopoldo, Rio Grande do Sul","tel":"(51) 3904-2700"}],
     mun: ["PORTÃO","SÃO LEOPOLDO"]
   },
   {
     reg: "Vale dos Sinos 3",
     coord: [{"n":"Michele Pereira Kruger","e":"michele.kruger@senairs.org.br"}],
+    gerentes: [{"n":"Alexandre Costa","tel":"(51) 99405-3397"}],
+    agentes: [{"n":"Katiele Avila Vargas","tel":"(51) 99393-9610"}],
+    central: ["(51) 99144-8356"],
     escolas: [{"n":"CFP SENAI EM CALÇADO E LOGÍSTICA INDUSTRIAL - NOVO HAMBURGO","end":"Rua Rui Barbosa, 120, Bairro Industrial, Novo Hamburgo, Rio Grande do Sul","tel":"(51) 3904-2730"},{"n":"CFP SENAI GUSTAVO COPÉ - NOVO HAMBURGO","end":"Rua Rui Barbosa, 120, Bairro Industrial, Novo Hamburgo, Rio Grande do Sul","tel":"(51) 3904-2730"},{"n":"CFP SENAI EM CURTIMENTO - ESTÂNCIA VELHA","end":"Rua Gregório de Mattos, 111, Bairro Centro, Estância Velha, Rio Grande do Sul","tel":"(51) 3904-2637"}],
     mun: ["CAMPO BOM","DOIS IRMÃOS","ESTÂNCIA VELHA","IVOTI","NOVO HAMBURGO"]
   },
@@ -331,6 +402,9 @@ function consultarMunicipio(nome) {
         municipio,
         subRegiao: regiao.reg,
         coordenadores: regiao.coord,
+        gerentes: regiao.gerentes,
+        agentesRelacionamento: regiao.agentes,
+        centralAtendimento: regiao.central,
         escolas: regiao.escolas
       };
     }
@@ -373,16 +447,25 @@ citySearch.addEventListener('input', () => {
     autocompleteList.appendChild(d); });
 });
 citySearch.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); autocompleteList.hidden=true; searchByInput(); } });
+citySearch.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); autocompleteList.hidden=true; searchByInput(); } });
 document.addEventListener('click',e=>{ if(!e.target.closest('.input-group')) autocompleteList.hidden=true; });
 
 // ===== RENDERIZAÇÃO =====
 function render(regiao,municipio=''){
   if(!regiao){ resultsArea.innerHTML='<div class="card"><div class="card-title">Nenhuma escola encontrada</div><p>Verifique o município ou sub-região.</p></div>'; return; }
+  const phoneLink=tel=>{const digits=(tel||'').replace(/\D/g,'');return digits?'+55'+digits:'';};
+  const phoneHtml=tel=>{const link=phoneLink(tel);return link?'<a href="tel:'+link+'">'+esc(tel)+'</a>':'Não informado';};
+  const peopleHtml=(items,type)=>items.map(item=>'<div class="contact-person"><div class="contact-name">'+esc(item.n)+'</div><div class="contact-links">'+(type==='email'?'<a href="mailto:'+esc(item.e)+'">'+esc(item.e)+'</a>':phoneHtml(item.tel))+'</div></div>').join('');
   let html='<div class="card">'+(municipio?'<div class="selection-kicker">Atendimento de referência para <strong>'+esc(municipio)+'</strong></div>':'')+'<div class="card-header"><div><span class="card-tag">Sub-região</span><div class="card-title">'+esc(regiao.reg)+'</div></div><span class="card-tag">'+regiao.mun.length+' municípios</span></div>';
-  html+='<div class="info-row"><div class="info-icon">👤</div><div><strong>Coordenador(es):</strong><br>'+regiao.coord.map(c=>esc(c.n)+' — <a href="mailto:'+esc(c.e)+'">'+esc(c.e)+'</a>').join('<br>')+'</div></div>';
+  html+='<div class="contact-grid">';
+  html+='<div class="contact-card"><div class="contact-label">👤 Coordenação Técnica SENAI</div>'+peopleHtml(regiao.coord,'email')+'</div>';
+  html+='<div class="contact-card"><div class="contact-label">◆ Gerência SENAI</div>'+peopleHtml(regiao.gerentes||[],'phone')+'</div>';
+  html+='<div class="contact-card"><div class="contact-label">🤝 Relacionamento com o Mercado</div>'+peopleHtml(regiao.agentes||[],'phone')+'</div>';
+  html+='<div class="contact-card"><div class="contact-label">☎ Central de Atendimento Sistema FIERGS</div><div class="contact-person"><div class="contact-name">Atendimento ao público</div><div class="contact-links">'+(regiao.central||[]).map(phoneHtml).join('<br>')+'</div></div></div>';
+  html+='</div><div class="section-title">Escola(s) de referência</div>';
   regiao.escolas.forEach(es=>{
     const tel=es.tel?es.tel.replace(/\D/g,''):'';
-    const wa=encodeURIComponent('Olá! Encontrei a '+es.n+' no evento sobre o Jovem Aprendiz SENAI-RS e gostaria de mais informações.');
+    const wa=encodeURIComponent('Olá! Encontrei a '+es.n+' no localizador de escolas SENAI-RS e gostaria de mais informações.');
     const map=encodeURIComponent(es.n+' - RS');
     html+='<div class="escola-box"><strong>'+esc(es.n)+'</strong><div class="escola-end">📍 '+esc(es.end)+'</div><div class="actions">';
     html+=tel?'<a class="btn-action bg-call" href="tel:+55'+tel+'">📞 Ligar</a>':'<span class="btn-action bg-call" style="opacity:.4">📞 Ligar</span>';
